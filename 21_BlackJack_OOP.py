@@ -136,3 +136,5 @@ while ask_input_yn("Do you want to play? (y/n): "):
     new_game = Game()
 else:
     print("It was nice playing with you. Have a nice day.")
+
+#test option
