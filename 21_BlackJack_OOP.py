@@ -1,4 +1,7 @@
 import random
+import sphinx
+
+"""" Basic Documentation """
 
 
 class Card:
@@ -28,7 +31,7 @@ class Player:
         self.hand = []
         self.value = 0
 
-    def add_card(self, card):
+    def add_card(self, card) -> None:
         self.hand.append(card)
         self.calculate_hand_value()
 
