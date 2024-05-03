@@ -3,7 +3,7 @@ import random as rn
 """"
     Simple BlackJack Game
     For testing basic programming practices:
-        OOP - classes Card, Player, Deck, 
+        OOP - classes Card, Player, Game
         testing - Pytest
         documentation - Sphinx 
         type annotations - Mypy
@@ -116,13 +116,30 @@ class Game:
         """
             Starts a new game of BlackJack
         """
-        self.deck = Deck()
         self.player, self.dealer = Player("Player"), Player("Dealer")
         self.is_game_running = True
+        self.deck = []
+        self.create_deck()
         self.deal_cards()
         self.player_turn()
         self.computer_turn()
         self.compare_values()
+
+    def create_deck(self) -> None:
+        """
+            Create list of 52 Card object, assigns it to self.deck() and shuffles it.
+        """
+        color = ("♥", "♦", "♣", "♠")
+        value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K']
+        self.deck = [Card(c, v) for c in color for v in value]
+        rn.shuffle(self.deck)
+
+    def get_card(self, pl) -> None:
+        """
+            Draws a card from the deck and adds it to the specified player's hand.
+            :param pl: Player to whom the card should be added.
+        """
+        pl.add_card(self.deck.pop())
 
     def evaluate_hands(self):
         """
@@ -148,13 +165,6 @@ class Game:
         }
         print(result_messages.get(w, "\nInvalid result\n"))
         self.is_game_running = False
-
-    def get_card(self, pl) -> None:
-        """
-            Draws a card from the deck and adds it to the specified player's hand.
-            :param pl: Player to whom the card should be added.
-        """
-        pl.add_card(self.deck.draw_card())
 
     def deal_cards(self) -> None:
         """

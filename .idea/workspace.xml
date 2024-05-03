@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="New Commit">
-      <change afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_BlackJack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Simple_Black_Jack.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Simple_Black_Jack.iml" afterDir="false" />
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Finished 1.0">
+      <change afterPath="$PROJECT_DIR$/BlackJack_02.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/21_BlackJack_OOP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +42,9 @@
     &quot;accountId&quot;: &quot;09fb180a-3b5f-471e-aa2c-734cab7e1788&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/BlackJack.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -59,11 +60,12 @@
     "Python tests.pytest in test_Calculator.py.executor": "Run",
     "Python.21_BlackJack_OOP.executor": "Run",
     "Python.22_BlackJack_OOP.executor": "Run",
+    "Python.BlackJack_02.executor": "Run",
     "Python.scratch_1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "D:/Active/Simple_Black_Jack",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
+    "settings.editor.selected.configurable": "editing.templates"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -137,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714490993495</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finished 1.0">
+      <option name="closed" value="true" />
+      <created>1714649020594</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714649020594</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +167,7 @@
     <MESSAGE value="Third commit" />
     <MESSAGE value="Backup commit" />
     <MESSAGE value="New Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Commit" />
+    <MESSAGE value="Finished 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished 1.0" />
   </component>
 </project>
