@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Finished 1.0">
-      <change afterPath="$PROJECT_DIR$/BlackJack_02.py" afterDir="false" />
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Created Simplified Version">
+      <change afterPath="$PROJECT_DIR$/BlackJack_03.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJack_02.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack_02.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
     "Python.21_BlackJack_OOP.executor": "Run",
     "Python.22_BlackJack_OOP.executor": "Run",
     "Python.BlackJack_02.executor": "Run",
+    "Python.BlackJack_03.executor": "Run",
     "Python.scratch_1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -147,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714649020594</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created Simplified Version">
+      <option name="closed" value="true" />
+      <created>1714712625920</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714712625920</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +177,7 @@
     <MESSAGE value="Backup commit" />
     <MESSAGE value="New Commit" />
     <MESSAGE value="Finished 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished 1.0" />
+    <MESSAGE value="Created Simplified Version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Simplified Version" />
   </component>
 </project>

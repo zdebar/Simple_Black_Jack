@@ -2,25 +2,19 @@ import random as rn
 
 """"
     Simple BlackJack Game
-    For testing basic programming practices:
-        OOP - classes Card, Player, Game
-        testing - Pytest
-        documentation - Sphinx 
-        type annotations - Mypy
-    Game Logic
-        Game deals cards first to player("Player") as long as player want cards, then to computer("Dealer") as long as
-        hand's value < 17.
-        After every card dealt, checks both for overreach (value > 21) or blackjack (value == 21). If premature game 
-        end, prints result and set is_game_running == False (this enables skipping rest of the game code)
-        If card dealing finishes without premature game end, values of both hands are compared, and winner is 
-        determined.
+
+    The game deals cards first to the player ("Player") as long as the player wants cards, then to the 
+    computer ("Dealer") as long as the hand's value is less than 17. After every card is dealt, it checks for both 
+    overreach (value > 21) and blackjack (value == 21). If the game ends prematurely, it prints the result and sets 
+    is_game_running to False, which enables skipping the rest of the game code. If card dealing finishes without a 
+    premature game end, the values of both hands are compared, and the winner is determined.
 """
 
 
 def ask_input_yn(question: str) -> bool:
     """
         Asks the user y/n question. Returns their response. Handles invalid input.
-        :param question: Boolean (yes/no) type question for user.
+        :param question: Question for player.
         :return: True for "y", False for "n".
     """
     while True:
@@ -59,6 +53,16 @@ class Player:
         self.hand = []
         self.value = 0
 
+    def __str__(self) -> str:
+        """
+            Returns string representation of player's hand and it's value.
+        """
+        output = f"{self.name}'s hand".ljust(18) + " | "
+        for card in self.hand:
+            output += f"{card} | "
+        output += f"\nValue: {self.value}"
+        return output
+
     def add_card(self, card) -> None:
         """
             Adds card to player hand and calculates new hand value.
@@ -66,15 +70,6 @@ class Player:
         """
         self.hand.append(card)
         self.calculate_hand_value()
-
-    def show_hand(self) -> None:
-        """
-            Displays the player's hand and it's value.
-        """
-        print(f"{self.name}'s hand".ljust(18) + " | ", end="")
-        for card in self.hand:
-            print(f"{card} | ", end="")
-        print(f"\nValue: {self.value}")
 
     def calculate_hand_value(self) -> None:
         """
@@ -122,7 +117,7 @@ class Game:
         self.deck = [Card(c, v) for c in color for v in value]
         rn.shuffle(self.deck)
 
-    def get_card(self, pl) -> None:
+    def draw_card(self, pl) -> None:
         """
             Draws a card from the deck and adds it to the specified player's hand.
             :param pl: Player to whom the card should be added.
@@ -134,8 +129,8 @@ class Game:
             Prints both player's and computer's hands.
             Evaluates both hands for overreach and BlackJack.
         """
-        self.player.show_hand()
-        self.dealer.show_hand()
+        print(self.player)
+        print(self.dealer)
         if self.player.value > 21 or self.dealer.value == 21:
             self.game_result(-1)
         elif self.dealer.value > 21 or self.player.value == 21:
@@ -161,8 +156,8 @@ class Game:
             Evaluate hands of both players
         """
         for _ in range(2):
-            self.get_card(self.player)
-        self.get_card(self.dealer)
+            self.draw_card(self.player)
+        self.draw_card(self.dealer)
         self.evaluate_hands()
 
     def player_turn(self) -> None:
@@ -170,7 +165,7 @@ class Game:
             Prompts the player whether to draw another card.
         """
         while self.is_game_running and ask_input_yn("\nDo you want another card? (y/n): "):
-            self.get_card(self.player)
+            self.draw_card(self.player)
             self.evaluate_hands()
 
     def computer_turn(self) -> None:
@@ -178,8 +173,8 @@ class Game:
             The computer draws cards until its hand value is 17 or higher.
         """
         while self.dealer.value < 17 and self.is_game_running:
-            print("\nComputer draws card!")
-            self.get_card(self.dealer)
+            print("\nDealer draws card!")
+            self.draw_card(self.dealer)
             self.evaluate_hands()
             input("Press any key to continue!")
 
