@@ -1,19 +1,21 @@
 import random as rn
+import os
 
 """"
     Simple BlackJack Game
-    For testing basic programming practices:
-        OOP - classes Card, Player, Deck, 
-        testing - Pytest
-        documentation - Sphinx 
-        type annotations - Mypy
+
+    The game deals cards first to the player ("Player") as long as the player wants cards, then to the 
+    computer ("Dealer") as long as the hand's value is less than 17. After every card is dealt, it checks for both 
+    overreach (value > 21) and blackjack (value == 21). If the game ends prematurely, it prints the result and sets 
+    is_game_running to False, which enables skipping the rest of the game code. If card dealing finishes without a 
+    premature game end, the values of both hands are compared, and the winner is determined.
 """
 
 
-def ask_input_yn(question: str) -> bool:
+def check_input_yn(question: str) -> bool:
     """
-        Asks the user y/n question returns their response. Handles invalid input.
-        :param question: Boolean (yes/no) type question for user.
+        Asks the user y/n question. Returns their response. Handles invalid input.
+        :param question: Question for player.
         :return: True for "y", False for "n".
     """
     while True:
@@ -22,8 +24,7 @@ def ask_input_yn(question: str) -> bool:
             return True
         if user_input == "n":
             return False
-        print("Invalid input! Please enter 'y' or 'n'!")
-
+        print("\nInvalid input! Please enter 'y' or 'n'!")
 
 class Card:
     def __init__(self, suit: str, rank: str) -> None:
@@ -40,25 +41,6 @@ class Card:
         return f"{' ' if len(self.rank) == 1 else ''}{self.rank:.2} of {self.suit}"
 
 
-class Deck:
-
-    def __init__(self) -> None:
-        """
-            Create deck of 52 cards and shuffles it.
-        """
-        color = ("♥", "♦", "♣", "♠")
-        value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K']
-        self.cards = [Card(c, v) for c in color for v in value]
-        rn.shuffle(self.cards)
-
-    def draw_card(self) -> Card:
-        """
-            Draws card from the Deck.
-            :return: Card object from Deck
-        """
-        return self.cards.pop()
-
-
 class Player:
     def __init__(self, name: str) -> None:
         """
@@ -71,6 +53,16 @@ class Player:
         self.hand = []
         self.value = 0
 
+    def __str__(self) -> str:
+        """
+            Returns string representation of player's hand and it's value.
+        """
+        output = f"\n{self.name}'s hand".ljust(18) + " | "
+        for card in self.hand:
+            output += f"{card} | "
+        output += f"\nValue: {self.value}"
+        return output
+
     def add_card(self, card) -> None:
         """
             Adds card to player hand and calculates new hand value.
@@ -78,15 +70,6 @@ class Player:
         """
         self.hand.append(card)
         self.calculate_hand_value()
-
-    def show_hand(self) -> None:
-        """
-            Displays the player's hand and it's value.
-        """
-        print(f"{self.name}'s hand".ljust(18) + " | ", end="")
-        for card in self.hand:
-            print(f"{card} | ", end="")
-        print(f"\nValue: {self.value}")
 
     def calculate_hand_value(self) -> None:
         """
@@ -105,8 +88,8 @@ class Player:
                     total_value += int(card.rank)
 
         while num_aces:
-            num_aces -= 1
             total_value += 10 if total_value <= 11 else 0
+            num_aces -= 1
 
         self.value = total_value
 
@@ -116,21 +99,42 @@ class Game:
         """
             Starts a new game of BlackJack
         """
-        self.deck = Deck()
         self.player, self.dealer = Player("Player"), Player("Dealer")
         self.is_game_running = True
+        self.create_deck()
         self.deal_cards()
         self.player_turn()
         self.computer_turn()
         self.compare_values()
 
-    def evaluate_hands(self):
+    def create_deck(self) -> None:
         """
-            Prints both player's and computer's hands.
-            Evaluates both hands for overreach and BlackJack.
+            Create list of 52 Card object, assigns it to self.deck() and shuffles it.
         """
-        self.player.show_hand()
-        self.dealer.show_hand()
+        color = ("♥", "♦", "♣", "♠")
+        value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K']
+        self.deck = [Card(c, v) for c in color for v in value]
+        rn.shuffle(self.deck)
+
+    def draw_card(self, pl) -> None:
+        """
+            Draws a card from the deck and adds it to the specified player's hand.
+            :param pl: Player to whom the card should be added.
+        """
+        pl.add_card(self.deck.pop())
+
+    def draw_card_and_evaluate(self, pl) -> None:
+        """
+           Draws a card from the deck and adds it to the specified player's hand.
+           Prints both player's and computer's hands.
+           Evaluates both hands for overreach and BlackJack.
+           :param pl: Player to whom the card should be added.
+        """
+        pl.add_card(self.deck.pop())
+
+        print(self.player)
+        print(self.dealer)
+
         if self.player.value > 21 or self.dealer.value == 21:
             self.game_result(-1)
         elif self.dealer.value > 21 or self.player.value == 21:
@@ -142,19 +146,12 @@ class Game:
             :param w: -1 for player's loss, 0 for draw, 1 for player's win
         """
         result_messages = {
-            -1: "\nYou lost!\n",
-            0: "\nDraw\n",
-            1: "\nYou won!\n",
+            -1: "\nYou lost!",
+            0: "\nDraw!",
+            1: "\nYou won!",
         }
-        print(result_messages.get(w, "\nInvalid result\n"))
+        print(result_messages.get(w, "\nInvalid result!"))
         self.is_game_running = False
-
-    def get_card(self, pl) -> None:
-        """
-            Draws a card from the deck and adds it to the specified player's hand.
-            :param pl: Player to whom the card should be added.
-        """
-        pl.add_card(self.deck.draw_card())
 
     def deal_cards(self) -> None:
         """
@@ -163,27 +160,24 @@ class Game:
             Evaluate hands of both players
         """
         for _ in range(2):
-            self.get_card(self.player)
-        self.get_card(self.dealer)
-        self.evaluate_hands()
+            self.draw_card(self.player)
+        self.draw_card_and_evaluate(self.dealer)
 
     def player_turn(self) -> None:
         """
             Prompts the player whether to draw another card.
         """
-        while self.is_game_running and ask_input_yn("\nDo you want another card? (y/n): "):
-            self.get_card(self.player)
-            self.evaluate_hands()
+        while self.is_game_running and check_input_yn("\nDo you want another card? (y/n): "):
+            self.draw_card_and_evaluate(self.player)
 
     def computer_turn(self) -> None:
         """
             The computer draws cards until its hand value is 17 or higher.
         """
-        while self.dealer.value < 17 and self.is_game_running:
-            print("\nComputer draws card!")
-            self.get_card(self.dealer)
-            self.evaluate_hands()
-            input("Press any key to continue!")
+        while self.is_game_running and self.dealer.value < 17:
+            print("\nDealer draws card!")
+            self.draw_card_and_evaluate(self.dealer)
+            input("\nPress Enter to continue!")
 
     def compare_values(self) -> None:
         """
@@ -199,8 +193,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    while ask_input_yn("Do you want to play? (y/n): "):
-        print()
+    while check_input_yn("\nDo you want to play? (y/n): "):
         new_game = Game()
     else:
-        print("It was nice playing with you. Have a nice day.")
+        print("\nIt was nice playing with you. Have a nice day.")
