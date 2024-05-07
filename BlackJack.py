@@ -16,6 +16,12 @@ from enum import Enum
 """
 
 
+COLOR = ("♥", "♦", "♣", "♠")
+VALUE = ('2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K')
+VALUE_DICT = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10,
+              "Q": 10, "K": 10}
+
+
 class GameResult(Enum):
     """
         Enum class representing the possible results of a game.
@@ -46,9 +52,7 @@ class Card:
         """
             Determines value of card.
         """
-        value_dict = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10,
-                      "Q": 10, "K": 10}
-        return value_dict.get(r, 0)
+        return VALUE_DICT.get(r)
 
 
 class Player:
@@ -78,6 +82,7 @@ class Player:
             :param card: Adds card to player hand.
         """
         self.hand.append(card)
+        self.calculate_hand_value()
 
     def calculate_hand_value(self) -> None:
         """
@@ -120,9 +125,7 @@ class BlackJack:
         """
         Adds a deck of cards to the shoe.
         """
-        color = ("♥", "♦", "♣", "♠")
-        value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K']
-        deck = [Card(c, v) for c in color for v in value]
+        deck = [Card(c, v) for c in COLOR for v in VALUE]
         random.shuffle(deck)
         self.shoe.extend(deck)
 
@@ -158,27 +161,33 @@ class BlackJack:
         if not self.shoe:
             self.add_deck_to_shoe()
         pl.add_card(self.shoe.pop())
-        pl.calculate_hand_value()
 
-    def draw_card_and_evaluate(self, pl) -> None:
+    def evaluate_hand(self, pl) -> None:
         """
-           Draws a card from the deck and adds it to the specified player's hand.
-           Prints both player's and computer's hands.
-           Evaluates both hands for overreach and BlackJack.
-           :param pl: Player to whom the card should be added.
+        Evaluates both hands for overreach and BlackJack. Present cards
+        :param pl: Player to evaluate.
         """
-        if not self.shoe:
-            self.add_deck_to_shoe()
-        pl.add_card(self.shoe.pop())
         pl.calculate_hand_value()
-
-        print(self.player)
-        print(self.dealer)
-
         if self.player.hand_value > 21 or self.dealer.hand_value == 21:
             self.game_result(GameResult.PLAYER_LOSS)
         elif self.dealer.hand_value > 21 or self.player.hand_value == 21:
             self.game_result(GameResult.PLAYER_WIN)
+
+    def present_cards(self):
+        """
+        Prints both players hands and their values.
+        """
+        print(self.player)
+        print(self.dealer)
+
+    def draw_card_and_evaluate(self, pl) -> None:
+        """
+           Combines drawing card, evaluating hand and presenting game.
+           :param pl: Player to whom the card should be added.
+        """
+        self.draw_card(pl)
+        self.evaluate_hand(pl)
+        self.present_cards()
 
     def game_result(self, result: GameResult) -> None:
         """
@@ -215,7 +224,7 @@ class BlackJack:
             The computer draws cards until its hand value is 17 or higher.
         """
         while self.is_game_running and self.dealer.hand_value < 17:
-            input("\nDealer draws card! Press Enter to continue!")
+            input("\nDealer draws a card! Press Enter to continue!")
             self.draw_card_and_evaluate(self.dealer)
 
     def compare_values(self) -> None:
