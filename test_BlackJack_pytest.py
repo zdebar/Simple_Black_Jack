@@ -7,4 +7,4 @@ class TestPlayer:
         player.hand = [Card("♥", "A"), Card("♦", "A"),
                        Card("♣", "A"), Card("♠", "A"), Card("♥", "J")]
         player.calculate_hand_value()
-        assert player.value == 14
+        assert player.hand_value == 14

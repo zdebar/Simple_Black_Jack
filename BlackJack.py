@@ -1,30 +1,29 @@
-import random as rn
-import os
+import random
+from enum import Enum
+
 
 """"
     Simple BlackJack Game
 
-    The game deals cards first to the player ("Player") as long as the player wants cards, then to the 
-    computer ("Dealer") as long as the hand's value is less than 17. After every card is dealt, it checks for both 
-    overreach (value > 21) and blackjack (value == 21). If the game ends prematurely, it prints the result and sets 
-    is_game_running to False, which enables skipping the rest of the game code. If card dealing finishes without a 
-    premature game end, the values of both hands are compared, and the winner is determined.
+    Game start with dealing two cards to Player, and one to Dealer.
+    In Player turn, game deals Player card as long as he wants one.
+    In Computer turn, game deals Computer card as long as value of Computer's hand is lower than 17.
+    
+    After every card dealt, game evaluate premature game end. If value of hand is higher or equal to 21, game prints
+    result and set is_game_running to False. With is_game_running == False subsequent game code is skipped.
+    
+    If there is no premature game end, game compares values of both hands and determines result. 
 """
 
 
-def check_input_yn(question: str) -> bool:
+class GameResult(Enum):
     """
-        Asks the user y/n question. Returns their response. Handles invalid input.
-        :param question: Question for player.
-        :return: True for "y", False for "n".
+        Enum class representing the possible results of a game.
     """
-    while True:
-        user_input = input(f"{question}").lower()
-        if user_input == "y":
-            return True
-        if user_input == "n":
-            return False
-        print("\nInvalid input! Please enter 'y' or 'n'!")
+    PLAYER_LOSS = -1
+    DRAW = 0
+    PLAYER_WIN = 1
+
 
 class Card:
     def __init__(self, suit: str, rank: str) -> None:
@@ -32,13 +31,24 @@ class Card:
             Initializes a Card object with the given suit and rank.
         """
         self.suit = suit
-        self.rank = rank
+        self.rank = str(rank)
+        self.value = self.calculate_value(rank)
+        self.ace = True if rank == "A" else False
 
     def __str__(self) -> str:
         """
             :return: The string representation of the card.
         """
-        return f"{' ' if len(self.rank) == 1 else ''}{self.rank:.2} of {self.suit}"
+        return f"{self.rank.rjust(2)} of {self.suit}"
+
+    @staticmethod
+    def calculate_value(r) -> int:
+        """
+            Determines value of card.
+        """
+        value_dict = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10,
+                      "Q": 10, "K": 10}
+        return value_dict.get(r, 0)
 
 
 class Player:
@@ -51,16 +61,15 @@ class Player:
         """
         self.name = name
         self.hand = []
-        self.value = 0
+        self.hand_value = 0
 
     def __str__(self) -> str:
         """
             Returns string representation of player's hand and it's value.
         """
         output = f"\n{self.name}'s hand".ljust(18) + " | "
-        for card in self.hand:
-            output += f"{card} | "
-        output += f"\nValue: {self.value}"
+        output += " | ".join(str(card) for card in self.hand) + " | "
+        output += f"\nValue: {self.hand_value}"
         return output
 
     def add_card(self, card) -> None:
@@ -69,59 +78,87 @@ class Player:
             :param card: Adds card to player hand.
         """
         self.hand.append(card)
-        self.calculate_hand_value()
 
     def calculate_hand_value(self) -> None:
         """
             Calculates the total value of the player's hand.
         """
-        total_value, num_aces = 0, 0
+        total_value = sum(card.value for card in self.hand)
+        num_aces = sum(card.ace for card in self.hand)
 
-        for card in self.hand:
-            match card.rank:
-                case "J" | "Q" | "K":
-                    total_value += 10
-                case "A":
-                    total_value += 1
-                    num_aces += 1
-                case _:
-                    total_value += int(card.rank)
-
-        while num_aces:
+        for _ in range(num_aces):
             total_value += 10 if total_value <= 11 else 0
-            num_aces -= 1
 
-        self.value = total_value
+        self.hand_value = total_value
 
 
-class Game:
+class BlackJack:
     def __init__(self) -> None:
         """
             Starts a new game of BlackJack
         """
         self.player, self.dealer = Player("Player"), Player("Dealer")
         self.is_game_running = True
-        self.create_deck()
+        self.shoe = []
+
+    @staticmethod
+    def check_input_yn(question: str) -> bool:
+        """
+            Asks the user y/n question. Returns their response. Handles invalid input.
+            :param question: Question for player.
+            :return: True for "y", False for "n".
+        """
+        while True:
+            user_input = input(question).strip().lower()
+            if user_input == "y":
+                return True
+            if user_input == "n":
+                return False
+            print("\nInvalid input! Please enter 'y' or 'n'!")
+
+    def add_deck_to_shoe(self) -> None:
+        """
+        Adds a deck of cards to the shoe.
+        """
+        color = ("♥", "♦", "♣", "♠")
+        value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K']
+        deck = [Card(c, v) for c in color for v in value]
+        random.shuffle(deck)
+        self.shoe.extend(deck)
+
+    def run_game(self) -> None:
+        """
+            Plays one round of game.
+            Asks player to player another round.
+            If player agrees, resets the game attributes and starts another round.
+            :return: None
+        """
+        self.game_round()
+        while self.check_input_yn("\nDo you want to play again? (y/n): "):
+            self.__init__()
+            self.game_round()
+        else:
+            print("\nIt was nice playing with you. Have a nice day.")
+
+    def game_round(self) -> None:
+        """
+            Runs all phases of a game.
+            :return: None
+        """
         self.deal_cards()
         self.player_turn()
         self.computer_turn()
         self.compare_values()
-
-    def create_deck(self) -> None:
-        """
-            Create list of 52 Card object, assigns it to self.deck() and shuffles it.
-        """
-        color = ("♥", "♦", "♣", "♠")
-        value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K']
-        self.deck = [Card(c, v) for c in color for v in value]
-        rn.shuffle(self.deck)
 
     def draw_card(self, pl) -> None:
         """
             Draws a card from the deck and adds it to the specified player's hand.
             :param pl: Player to whom the card should be added.
         """
-        pl.add_card(self.deck.pop())
+        if not self.shoe:
+            self.add_deck_to_shoe()
+        pl.add_card(self.shoe.pop())
+        pl.calculate_hand_value()
 
     def draw_card_and_evaluate(self, pl) -> None:
         """
@@ -130,27 +167,30 @@ class Game:
            Evaluates both hands for overreach and BlackJack.
            :param pl: Player to whom the card should be added.
         """
-        pl.add_card(self.deck.pop())
+        if not self.shoe:
+            self.add_deck_to_shoe()
+        pl.add_card(self.shoe.pop())
+        pl.calculate_hand_value()
 
         print(self.player)
         print(self.dealer)
 
-        if self.player.value > 21 or self.dealer.value == 21:
-            self.game_result(-1)
-        elif self.dealer.value > 21 or self.player.value == 21:
-            self.game_result(1)
+        if self.player.hand_value > 21 or self.dealer.hand_value == 21:
+            self.game_result(GameResult.PLAYER_LOSS)
+        elif self.dealer.hand_value > 21 or self.player.hand_value == 21:
+            self.game_result(GameResult.PLAYER_WIN)
 
-    def game_result(self, w) -> None:
+    def game_result(self, result: GameResult) -> None:
         """
             Prints the result based on outcome.
-            :param w: -1 for player's loss, 0 for draw, 1 for player's win
+            :param result: Gamere
         """
         result_messages = {
-            -1: "\nYou lost!",
-            0: "\nDraw!",
-            1: "\nYou won!",
+            GameResult.PLAYER_LOSS: "\nYou lost!",
+            GameResult.DRAW: "\nDraw!",
+            GameResult.PLAYER_WIN: "\nYou won!",
         }
-        print(result_messages.get(w, "\nInvalid result!"))
+        print(result_messages.get(result, "\nInvalid result!"))
         self.is_game_running = False
 
     def deal_cards(self) -> None:
@@ -167,33 +207,30 @@ class Game:
         """
             Prompts the player whether to draw another card.
         """
-        while self.is_game_running and check_input_yn("\nDo you want another card? (y/n): "):
+        while self.is_game_running and self.check_input_yn("\nDo you want another card? (y/n): "):
             self.draw_card_and_evaluate(self.player)
 
     def computer_turn(self) -> None:
         """
             The computer draws cards until its hand value is 17 or higher.
         """
-        while self.is_game_running and self.dealer.value < 17:
-            print("\nDealer draws card!")
+        while self.is_game_running and self.dealer.hand_value < 17:
+            input("\nDealer draws card! Press Enter to continue!")
             self.draw_card_and_evaluate(self.dealer)
-            input("\nPress Enter to continue!")
 
     def compare_values(self) -> None:
         """
             Compares player's and computer's hand's values and determines game result.
         """
         if self.is_game_running:
-            if self.player.value == self.dealer.value:
-                self.game_result(0)
-            elif self.player.value > self.dealer.value:
-                self.game_result(1)
+            if self.player.hand_value == self.dealer.hand_value:
+                self.game_result(GameResult.DRAW)
+            elif self.player.hand_value > self.dealer.hand_value:
+                self.game_result(GameResult.PLAYER_WIN)
             else:
-                self.game_result(-1)
+                self.game_result(GameResult.PLAYER_LOSS)
 
 
 if __name__ == "__main__":
-    while check_input_yn("\nDo you want to play? (y/n): "):
-        new_game = Game()
-    else:
-        print("\nIt was nice playing with you. Have a nice day.")
+    game = BlackJack()
+    game.run_game()
