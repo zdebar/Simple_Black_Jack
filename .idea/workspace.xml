@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Codium recommended improvement">
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Split BlackJack.draw_card_and_evaluate into multiple methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
     </list>
@@ -70,7 +70,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "D:/Active/Simple_Black_Jack",
-    "settings.editor.selected.configurable": "editor.preferences.folding"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -184,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715081213735</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Split BlackJack.draw_card_and_evaluate into multiple methods">
+      <option name="closed" value="true" />
+      <created>1715088446654</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715088446654</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +217,7 @@
     <MESSAGE value="Converted - Player: show_hands to __str__" />
     <MESSAGE value="Small Changes" />
     <MESSAGE value="Codium recommended improvement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Codium recommended improvement" />
+    <MESSAGE value="Split BlackJack.draw_card_and_evaluate into multiple methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Split BlackJack.draw_card_and_evaluate into multiple methods" />
   </component>
 </project>

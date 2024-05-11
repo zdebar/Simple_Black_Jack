@@ -180,14 +180,14 @@ class BlackJack:
         print(self.player)
         print(self.dealer)
 
-    def draw_card_and_evaluate(self, pl) -> None:
+    def draw_evaluate_present(self, pl) -> None:
         """
            Combines drawing card, evaluating hand and presenting game.
            :param pl: Player to whom the card should be added.
         """
         self.draw_card(pl)
-        self.evaluate_hand(pl)
         self.present_cards()
+        self.evaluate_hand(pl)
 
     def game_result(self, result: GameResult) -> None:
         """
@@ -210,14 +210,14 @@ class BlackJack:
         """
         for _ in range(2):
             self.draw_card(self.player)
-        self.draw_card_and_evaluate(self.dealer)
+        self.draw_evaluate_present(self.dealer)
 
     def player_turn(self) -> None:
         """
             Prompts the player whether to draw another card.
         """
         while self.is_game_running and self.check_input_yn("\nDo you want another card? (y/n): "):
-            self.draw_card_and_evaluate(self.player)
+            self.draw_evaluate_present(self.player)
 
     def computer_turn(self) -> None:
         """
@@ -225,7 +225,7 @@ class BlackJack:
         """
         while self.is_game_running and self.dealer.hand_value < 17:
             input("\nDealer draws a card! Press Enter to continue!")
-            self.draw_card_and_evaluate(self.dealer)
+            self.draw_evaluate_present(self.dealer)
 
     def compare_values(self) -> None:
         """
