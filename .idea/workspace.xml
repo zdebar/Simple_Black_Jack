@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Split BlackJack.draw_card_and_evaluate into multiple methods">
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Tiny changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
     </list>
@@ -53,33 +53,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest in test_BlacJack.py.executor": "Run",
-    "Python tests.pytest in test_BlackJack.py.executor": "Run",
-    "Python tests.pytest in test_Calculator.py.executor": "Run",
-    "Python.21_BlackJack_OOP.executor": "Run",
-    "Python.22_BlackJack_OOP.executor": "Run",
-    "Python.BlackJack.executor": "Run",
-    "Python.BlackJack_02.executor": "Run",
-    "Python.BlackJack_03.executor": "Run",
-    "Python.BlackJack_2.executor": "Run",
-    "Python.BlackJack_3.executor": "Run",
-    "Python.BlackJack_4.executor": "Run",
-    "Python.scratch_1.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Active/Simple_Black_Jack",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest in test_BlacJack.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_BlackJack.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_Calculator.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.21_BlackJack_OOP.executor&quot;: &quot;Run&quot;,
+    &quot;Python.22_BlackJack_OOP.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlackJack.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlackJack_02.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlackJack_03.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlackJack_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlackJack_3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlackJack_4.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Active/Simple_Black_Jack&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python",
-      "Shell Script",
-      "PLAIN_TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;,
+      &quot;Shell Script&quot;,
+      &quot;PLAIN_TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Active\Simple_Black_Jack" />
@@ -192,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715088446654</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Tiny changes">
+      <option name="closed" value="true" />
+      <created>1715425637530</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715425637530</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +226,7 @@
     <MESSAGE value="Small Changes" />
     <MESSAGE value="Codium recommended improvement" />
     <MESSAGE value="Split BlackJack.draw_card_and_evaluate into multiple methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Split BlackJack.draw_card_and_evaluate into multiple methods" />
+    <MESSAGE value="Tiny changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tiny changes" />
   </component>
 </project>

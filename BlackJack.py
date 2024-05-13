@@ -45,7 +45,7 @@ class Card:
         """
             :return: The string representation of the card.
         """
-        return f"{self.rank.rjust(2)} of {self.suit}"
+        return f"{self.rank:>2} of {self.suit}"
 
     @staticmethod
     def calculate_value(r) -> int:
