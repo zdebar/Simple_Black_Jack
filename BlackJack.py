@@ -9,6 +9,16 @@ VALUE_DICT = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9
               "Q": 10, "K": 10}
 
 
+def check_input_yn(question: str) -> bool:
+    while True:
+        user_input = input(question).strip().lower()
+        if user_input == "y":
+            return True
+        if user_input == "n":
+            return False
+        print("\nInvalid input! Please enter 'y' or 'n'!")
+
+
 class GameResult(Enum):
     """
         Possible results of game.
@@ -37,10 +47,6 @@ class Player:
         return f"\n{self.name}'s hand".ljust(18) + " | " + " | ".join(str(card) for card in self.hand) + " | " + \
             f"\nValue: {self.hand_value}"
 
-    def add_card(self, card) -> None:
-        self.hand.append(card)
-        self.calculate_hand_value()
-
     def calculate_hand_value(self) -> None:
         total_value = sum(VALUE_DICT[card.rank] for card in self.hand)
         num_aces = sum(1 for card in self.hand if card.rank == "A")
@@ -54,42 +60,19 @@ class Player:
 class BlackJack:
     def __init__(self) -> None:
         self.player, self.dealer = Player("Player"), Player("Dealer")
-        self.is_game_running = True
         self.shoe = []
-
-    @staticmethod
-    def check_input_yn(question: str) -> bool:
-        while True:
-            user_input = input(question).strip().lower()
-            if user_input == "y":
-                return True
-            if user_input == "n":
-                return False
-            print("\nInvalid input! Please enter 'y' or 'n'!")
+        self.is_game_running = True
 
     def add_deck_to_shoe(self) -> None:
         deck = [Card(c, v) for c in COLOR for v in RANK]
         random.shuffle(deck)
         self.shoe.extend(deck)
 
-    def run_game(self) -> None:
-        self.game_round()
-        while self.check_input_yn("\nDo you want to play again? (y/n): "):
-            self.__init__()
-            self.game_round()
-        else:
-            print("\nIt was nice playing with you. Have a nice day.")
-
-    def game_round(self) -> None:
-        self.deal_cards()
-        self.player_turn()
-        self.computer_turn()
-        self.compare_values()
-
     def draw_card(self, pl) -> None:
         if not self.shoe:
             self.add_deck_to_shoe()
-        pl.add_card(self.shoe.pop())
+        pl.hand.append(self.shoe.pop())
+        pl.calculate_hand_value()
 
     def evaluate_hand(self, pl) -> None:
         pl.calculate_hand_value()
@@ -102,7 +85,7 @@ class BlackJack:
         print(self.player)
         print(self.dealer)
 
-    def draw_evaluate_present(self, pl) -> None:
+    def draw_and_present(self, pl) -> None:
         self.draw_card(pl)
         self.present_cards()
         self.evaluate_hand(pl)
@@ -116,30 +99,33 @@ class BlackJack:
         print(result_messages.get(result, "\nInvalid result!"))
         self.is_game_running = False
 
-    def deal_cards(self) -> None:
-        for _ in range(2):
-            self.draw_card(self.player)
-        self.draw_evaluate_present(self.dealer)
-
-    def player_turn(self) -> None:
-        while self.is_game_running and self.check_input_yn("\nDo you want another card? (y/n): "):
-            self.draw_evaluate_present(self.player)
-
-    def computer_turn(self) -> None:
-        while self.is_game_running and self.dealer.hand_value < 17:
-            input("\nDealer draws a card! Press Enter to continue!")
-            self.draw_evaluate_present(self.dealer)
-
-    def compare_values(self) -> None:
-        if self.is_game_running:
-            if self.player.hand_value == self.dealer.hand_value:
-                self.game_result(GameResult.DRAW)
-            elif self.player.hand_value > self.dealer.hand_value:
-                self.game_result(GameResult.PLAYER_WIN)
-            else:
-                self.game_result(GameResult.PLAYER_LOSS)
-
 
 if __name__ == "__main__":
-    game = BlackJack()
-    game.run_game()
+    while check_input_yn("\nDo you want to play game of BlackJack? (y/n): "):
+        game = BlackJack()
+
+        # deal cards
+        for _ in range(2):
+            game.draw_card(game.player)
+        game.draw_and_present(game.dealer)
+
+        # player turn
+        while game.is_game_running and check_input_yn("\nDo you want another card? (y/n): "):
+            game.draw_and_present(game.player)
+
+        # computer turn
+        while game.is_game_running and game.dealer.hand_value < 17:
+            input("\nDealer draws a card! Press Enter to continue!")
+            game.draw_and_present(game.dealer)
+
+        # final comparison
+        if game.is_game_running:
+            if game.player.hand_value == game.dealer.hand_value:
+                game.game_result(GameResult.DRAW)
+            elif game.player.hand_value > game.dealer.hand_value:
+                game.game_result(GameResult.PLAYER_WIN)
+            else:
+                game.game_result(GameResult.PLAYER_LOSS)
+
+    else:
+        print("\nIt was nice playing with you. Have a nice day.")
