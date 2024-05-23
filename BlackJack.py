@@ -6,6 +6,7 @@ from dataclasses import dataclass
 # Configure logging
 logging.basicConfig(level=logging.CRITICAL, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Deck Settings
 COLOR = ("♥", "♦", "♣", "♠")
 RANK = ('2', '3', '4', '5', '6', '7', '8', '9', '10', 'A', 'J', 'Q', 'K')
 VALUE_DICT = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10,
@@ -15,13 +16,7 @@ VALUE_DICT = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9
 DEALER_DRAW_NUMBER = 17
 GAME_GOAL_NUMBER = 21
 ALTERNATIVE_ACE_VALUE = 11
-ace_addition = ALTERNATIVE_ACE_VALUE - VALUE_DICT["A"]
-
-
-class GameResult(Enum):
-    PLAYER_LOSS = auto()
-    DRAW = auto()
-    PLAYER_WIN = auto()
+ACE_ADDITION = ALTERNATIVE_ACE_VALUE - VALUE_DICT["A"]
 
 
 def input_yn(question: str) -> bool:
@@ -32,6 +27,12 @@ def input_yn(question: str) -> bool:
         if user_input == "n":
             return False
         print("\nInvalid input! Please enter 'y' or 'n'!")
+
+
+class GameResult(Enum):
+    PLAYER_LOSS = auto()
+    DRAW = auto()
+    PLAYER_WIN = auto()
 
 
 @dataclass(frozen=True)
@@ -55,11 +56,11 @@ class Player:
 
     def calculate_hand_value(self) -> None:
         total_value = sum(VALUE_DICT[card.rank] for card in self.hand)
-        num_aces = sum(1 for card in self.hand if card.rank == "A")
+        num_aces = sum(VALUE_DICT["A"] for card in self.hand if card.rank == "A")
 
         for _ in range(num_aces):
-            if total_value + 10 <= GAME_GOAL_NUMBER:
-                total_value += 10
+            if total_value + ACE_ADDITION <= GAME_GOAL_NUMBER:
+                total_value += ACE_ADDITION
 
         self.hand_value = total_value
         logging.debug(f"{self.name}'s hand value calculated: {self.hand_value}")
@@ -72,7 +73,6 @@ class Deck:
     def create_deck(self) -> None:
         self.cards = [Card(c, v) for c in COLOR for v in RANK]
         random.shuffle(self.cards)
-        logging.info("Deck of cards is created")
 
     def draw_card(self) -> Card:
         if not self.cards:
@@ -82,11 +82,46 @@ class Deck:
 
 class GameController:
     def __init__(self) -> None:
-        self.player = Player("Human")
+        self.player = Player("Player")
         self.dealer = Player("Dealer")
         self.deck = Deck()
         self.game_on = True
-        logging.info("GameController game initialized")
+
+    def run_game(self):
+        self.deal_initial_cards()
+        self.player_turn()
+        self.dealer_turn()
+        self.determine_winner()
+
+    def deal_initial_cards(self) -> None:
+        for _ in range(2):
+            self.player.hand.append(self.deck.draw_card())
+        self.player.calculate_hand_value()
+        self.perform_draw_block(self.dealer)
+
+    def player_turn(self) -> None:
+        while self.game_on and input_yn("\nDo you want another card? (y/n): "):
+            self.perform_draw_block(self.player)
+
+    def dealer_turn(self) -> None:
+        while self.game_on and self.dealer.hand_value < DEALER_DRAW_NUMBER:
+            input("\nDealer draws a card! Press Enter to continue!")
+            self.perform_draw_block(self.dealer)
+
+    def determine_winner(self) -> None:
+        if self.game_on:
+            if self.player.hand_value > self.dealer.hand_value:
+                print("\nYou win!")
+            elif self.player.hand_value < self.dealer.hand_value:
+                print("\nDealer wins!")
+            else:
+                print("\nIt's a draw!")
+
+    def perform_draw_block(self, member) -> None:
+        member.hand.append(self.deck.draw_card())
+        member.calculate_hand_value()
+        self.present_cards()
+        self.check_game_status()
 
     def present_cards(self) -> None:
         print(self.player)
@@ -107,46 +142,10 @@ class GameController:
         print(result_messages.get(result, "\nInvalid result!"))
         self.game_on = False
 
-    def deal_initial_cards(self) -> None:
-        for _ in range(2):
-            self.player.hand.append(self.deck.draw_card())
-        self.dealer.hand.append(self.deck.draw_card())
-        self.player.calculate_hand_value()
-        self.dealer.calculate_hand_value()
-        self.present_cards()
-        self.check_game_status()
-
-    def player_turn(self) -> None:
-        while self.game_on and input_yn("\nDo you want another card? (y/n): "):
-            self.player.hand.append(self.deck.draw_card())
-            self.player.calculate_hand_value()
-            self.present_cards()
-            self.check_game_status()
-
-    def dealer_turn(self) -> None:
-        while self.game_on and self.dealer.hand_value < DEALER_DRAW_NUMBER:
-            input("\nDealer draws a card! Press Enter to continue!")
-            self.dealer.hand.append(self.deck.draw_card())
-            self.dealer.calculate_hand_value()
-            self.present_cards()
-            self.check_game_status()
-
-    def determine_winner(self) -> None:
-        if self.game_on:
-            if self.player.hand_value > self.dealer.hand_value:
-                print("\nYou win!")
-            elif self.player.hand_value < self.dealer.hand_value:
-                print("\nDealer wins!")
-            else:
-                print("\nIt's a draw!")
-
 
 if __name__ == "__main__":
-    while input("\nDo you want to play game of BlackJack? (y/n): ").strip().lower() == "y":
+    while input("\nDo you want to play game of BlackJack? (y/n): "):
         game_controller = GameController()
-        game_controller.deal_initial_cards()
-        game_controller.player_turn()
-        game_controller.dealer_turn()
-        game_controller.determine_winner()
+        game_controller.run_game()
 
     print("\nThanks for playing! Have a great day!")
