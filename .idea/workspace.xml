@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Pls stop refactoring">
-      <change afterPath="$PROJECT_DIR$/BlackJack_2.py" afterDir="false" />
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Less crowded class BlackJack">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,15 +57,18 @@
   "keyToString": {
     "Python tests.pytest in test_BlacJack.py.executor": "Run",
     "Python tests.pytest in test_BlackJack.py.executor": "Run",
+    "Python tests.pytest in test_BlackJack_pytest.py.executor": "Run",
     "Python tests.pytest in test_Calculator.py.executor": "Run",
     "Python.21_BlackJack_OOP.executor": "Run",
     "Python.22_BlackJack_OOP.executor": "Run",
     "Python.BlackJack.executor": "Run",
     "Python.BlackJack_02.executor": "Run",
     "Python.BlackJack_03.executor": "Run",
+    "Python.BlackJack_04.executor": "Run",
     "Python.BlackJack_2.executor": "Run",
     "Python.BlackJack_3.executor": "Run",
     "Python.BlackJack_4.executor": "Run",
+    "Python.BlackJack_logging.executor": "Run",
     "Python.scratch_1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -229,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716379426324</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Less crowded class BlackJack">
+      <option name="closed" value="true" />
+      <created>1716383301538</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1716383301538</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,6 +269,7 @@
     <MESSAGE value="Tiny changes" />
     <MESSAGE value="formating" />
     <MESSAGE value="Pls stop refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pls stop refactoring" />
+    <MESSAGE value="Less crowded class BlackJack" />
+    <option name="LAST_COMMIT_MESSAGE" value="Less crowded class BlackJack" />
   </component>
 </project>
