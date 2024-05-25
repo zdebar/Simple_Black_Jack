@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Refactoring Class Separation">
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="GameController Method perform_draw_block">
+      <change afterPath="$PROJECT_DIR$/02/BlackJack.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/02/test_BlackJack_pytest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/01/BlackJack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_BlackJack_pytest.py" beforeDir="false" afterPath="$PROJECT_DIR$/01/test_BlackJack_pytest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +75,7 @@
     "Python.scratch_1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Active/Simple_Black_Jack",
+    "last_opened_file_path": "D:/Active/Simple_Black_Jack/02",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
@@ -85,10 +88,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Active\Simple_Black_Jack\02" />
       <recent name="D:\Active\Simple_Black_Jack" />
       <recent name="D:\Active\Simple_Black_Jack\02_OOP_A" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Active\Simple_Black_Jack\01" />
       <recent name="D:\Active\Simple_Black_Jack" />
       <recent name="D:\Active\Simple_Black_Jack\01_Basic" />
     </key>
@@ -248,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716458527861</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="GameController Method perform_draw_block">
+      <option name="closed" value="true" />
+      <created>1716466770567</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1716466770567</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +292,7 @@
     <MESSAGE value="Pls stop refactoring" />
     <MESSAGE value="Less crowded class BlackJack" />
     <MESSAGE value="Refactoring Class Separation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring Class Separation" />
+    <MESSAGE value="GameController Method perform_draw_block" />
+    <option name="LAST_COMMIT_MESSAGE" value="GameController Method perform_draw_block" />
   </component>
 </project>

@@ -97,16 +97,16 @@ class GameController:
         for _ in range(2):
             self.player.hand.append(self.deck.draw_card())
         self.player.calculate_hand_value()
-        self.perform_draw_block(self.dealer)
+        self.perform_draw_card_sequence(self.dealer)
 
     def player_turn(self) -> None:
         while self.game_on and input_yn("\nDo you want another card? (y/n): "):
-            self.perform_draw_block(self.player)
+            self.perform_draw_card_sequence(self.player)
 
     def dealer_turn(self) -> None:
         while self.game_on and self.dealer.hand_value < DEALER_DRAW_NUMBER:
             input("\nDealer draws a card! Press Enter to continue!")
-            self.perform_draw_block(self.dealer)
+            self.perform_draw_card_sequence(self.dealer)
 
     def determine_winner(self) -> None:
         if self.game_on:
@@ -117,9 +117,9 @@ class GameController:
             else:
                 print("\nIt's a draw!")
 
-    def perform_draw_block(self, member) -> None:
+    def perform_draw_card_sequence(self, member) -> None:
         member.hand.append(self.deck.draw_card())
-        member.calculate_hand_value()
+        member.calculate_hand_value_with
         self.present_cards()
         self.check_game_status()
 
@@ -145,7 +145,7 @@ class GameController:
 
 if __name__ == "__main__":
     while input("\nDo you want to play game of BlackJack? (y/n): "):
-        game_controller = GameController()
-        game_controller.run_game()
+        black_jack = GameController()
+        black_jack.run_game()
 
     print("\nThanks for playing! Have a great day!")
