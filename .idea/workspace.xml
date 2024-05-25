@@ -4,22 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc.">
-      <change afterPath="$PROJECT_DIR$/03/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/config/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/config/logging_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/controllers/game_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/models/card.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/models/deck.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/models/player.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/test_BlackJack_pytest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/utils/hand_value_calculator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03/utils/input_utils.py" afterDir="false" />
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Not Sure about commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01/BlackJack.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01/test_BlackJack_pytest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/02/BlackJack.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/02/test_BlackJack_pytest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/config/logging_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/logging_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/controllers/game_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/game_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/models/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/models/deck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/deck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/models/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/test_BlackJack_pytest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_hand_value_calculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/utils/hand_value_calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/hand_value_calculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03/utils/input_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/input_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +76,7 @@
     "Python tests.pytest in test_BlackJack.py.executor": "Run",
     "Python tests.pytest in test_BlackJack_pytest.py.executor": "Run",
     "Python tests.pytest in test_Calculator.py.executor": "Run",
+    "Python tests.pytest in test_hand_value_calculator.py.executor": "Run",
     "Python.21_BlackJack_OOP.executor": "Run",
     "Python.22_BlackJack_OOP.executor": "Run",
     "Python.BlackJack.executor": "Run",
@@ -112,10 +117,10 @@
       <recent name="D:\Active\Simple_Black_Jack\03\controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Active\Simple_Black_Jack" />
       <recent name="D:\Active\Simple_Black_Jack\03\config" />
       <recent name="D:\Active\Simple_Black_Jack\03\models" />
       <recent name="D:\Active\Simple_Black_Jack\03\controllers" />
-      <recent name="D:\Active\Simple_Black_Jack" />
       <recent name="D:\Active\Simple_Black_Jack\01" />
     </key>
   </component>
@@ -290,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716635098890</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Not Sure about commit">
+      <option name="closed" value="true" />
+      <created>1716642921241</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1716642921241</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -323,6 +336,7 @@
     <MESSAGE value="Refactoring Class Separation" />
     <MESSAGE value="GameController Method perform_draw_block" />
     <MESSAGE value="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc." />
+    <MESSAGE value="Not Sure about commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Not Sure about commit" />
   </component>
 </project>

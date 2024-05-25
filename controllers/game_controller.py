@@ -6,9 +6,9 @@ from config.config import *
 
 class GameController:
     def __init__(self, player_class: Player, dealer_class: Player, deck_class: Deck) -> None:
-        self.player = player_class("Player")
-        self.dealer = dealer_class("Dealer")
-        self.deck = deck_class()
+        self.player = player_class
+        self.dealer = dealer_class
+        self.deck = deck_class
         self.game_on = True
 
     def run_game(self):
@@ -31,41 +31,36 @@ class GameController:
     def determine_winner(self) -> None:
         if self.game_on:
             if self.player.hand_value > self.dealer.hand_value:
-                print("\nYou win!")
+                self.game_result(GameResult.PLAYER_WIN)
             elif self.player.hand_value < self.dealer.hand_value:
-                print("\nDealer wins!")
+                self.game_result(GameResult.PLAYER_LOSS)
             else:
-                print("\nIt's a draw!")
+                self.game_result(GameResult.DRAW.value)
 
     def perform_draw_card_sequence(self, member) -> None:
         member.hand.append(self.deck.draw_card())
         member.hand_value = calculate_hand_value_with_default_dict(member.hand)
         self.present_cards()
-        self.check_game_status()
+        self.check_overreach()
 
     def present_cards(self) -> None:
         print(self.player)
         print(self.dealer)
 
-    def check_game_status(self) -> None:
+    def check_overreach(self) -> None:
         if self.player.hand_value > GAME_GOAL_NUMBER:
             self.game_result(GameResult.PLAYER_LOSS)
         elif self.dealer.hand_value > GAME_GOAL_NUMBER:
             self.game_result(GameResult.PLAYER_WIN)
 
     def game_result(self, result: GameResult) -> None:
-        result_messages = {
-            GameResult.PLAYER_LOSS: "\nYou lost!",
-            GameResult.DRAW: "\nIt's a draw!",
-            GameResult.PLAYER_WIN: "\nYou won!",
-        }
-        print(result_messages.get(result, "\nInvalid result!"))
+        print(result.value)
         self.game_on = False
 
 
 class GameControllerFactory:
     @staticmethod
-    def create_game_controller(player_class: Player = HumanPlayer, dealer_class: Player = ComputerPlayer,
-                               deck_class: Deck = Deck) -> 'GameController':
-
+    def create_game_controller(player_class: Player = HumanPlayer("Player"),
+                               dealer_class: Player = ComputerPlayer("Computer"),
+                               deck_class: Deck = Deck()) -> 'GameController':
         return GameController(player_class, dealer_class, deck_class)

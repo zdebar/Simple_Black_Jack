@@ -1,4 +1,4 @@
-from enum import Enum, auto
+from enum import Enum
 
 
 # Deck Settings
@@ -15,6 +15,7 @@ ACE_ADDITION = ALTERNATIVE_ACE_VALUE - VALUE_DICT["A"]
 
 
 class GameResult(Enum):
-    PLAYER_LOSS = auto()
-    DRAW = auto()
-    PLAYER_WIN = auto()
+    PLAYER_LOSS = "\nYou lost!"
+    DRAW = "\nIt's a draw!"
+    PLAYER_WIN = "\nYou won!"
+
