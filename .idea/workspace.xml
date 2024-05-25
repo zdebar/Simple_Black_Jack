@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="GameController Method perform_draw_block">
-      <change afterPath="$PROJECT_DIR$/02/BlackJack.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/02/test_BlackJack_pytest.py" afterDir="false" />
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc.">
+      <change afterPath="$PROJECT_DIR$/03/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/config/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/config/logging_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/controllers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/controllers/game_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/models/card.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/models/deck.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/models/player.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/test_BlackJack_pytest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/utils/hand_value_calculator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03/utils/input_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/01/BlackJack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_BlackJack_pytest.py" beforeDir="false" afterPath="$PROJECT_DIR$/01/test_BlackJack_pytest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +82,17 @@
     "Python.BlackJack_3.executor": "Run",
     "Python.BlackJack_4.executor": "Run",
     "Python.BlackJack_logging.executor": "Run",
+    "Python.card.executor": "Run",
+    "Python.deck.executor": "Run",
+    "Python.game_controller.executor": "Run",
+    "Python.hide.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.player.executor": "Run",
     "Python.scratch_1.executor": "Run",
+    "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Active/Simple_Black_Jack/02",
+    "last_opened_file_path": "D:/Active/Simple_Black_Jack/test",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
@@ -88,14 +105,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Active\Simple_Black_Jack\02" />
-      <recent name="D:\Active\Simple_Black_Jack" />
-      <recent name="D:\Active\Simple_Black_Jack\02_OOP_A" />
+      <recent name="D:\Active\Simple_Black_Jack\test" />
+      <recent name="D:\Active\Simple_Black_Jack\03" />
+      <recent name="D:\Active\Simple_Black_Jack\03\utils" />
+      <recent name="D:\Active\Simple_Black_Jack\03\config" />
+      <recent name="D:\Active\Simple_Black_Jack\03\controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Active\Simple_Black_Jack\01" />
+      <recent name="D:\Active\Simple_Black_Jack\03\config" />
+      <recent name="D:\Active\Simple_Black_Jack\03\models" />
+      <recent name="D:\Active\Simple_Black_Jack\03\controllers" />
       <recent name="D:\Active\Simple_Black_Jack" />
-      <recent name="D:\Active\Simple_Black_Jack\01_Basic" />
+      <recent name="D:\Active\Simple_Black_Jack\01" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -261,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716466770567</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc.">
+      <option name="closed" value="true" />
+      <created>1716635098890</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1716635098890</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -293,6 +322,7 @@
     <MESSAGE value="Less crowded class BlackJack" />
     <MESSAGE value="Refactoring Class Separation" />
     <MESSAGE value="GameController Method perform_draw_block" />
-    <option name="LAST_COMMIT_MESSAGE" value="GameController Method perform_draw_block" />
+    <MESSAGE value="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc." />
   </component>
 </project>
