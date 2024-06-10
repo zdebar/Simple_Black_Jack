@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Dependency Injection, Separated into modules">
+    <list default="true" id="e414878f-22ce-45ae-88f2-5fc1da9ba50d" name="Changes" comment="Enum Settings, Minor Improvements">
+      <change afterPath="$PROJECT_DIR$/ui/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/ui_terminal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/logging_config.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/game_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/game_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/deck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/deck.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_hand_value_calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_hand_value_calculator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/hand_value_calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/hand_value_calculator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +83,7 @@
     "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Active/Simple_Black_Jack",
+    "last_opened_file_path": "D:/Active/Simple_Black_Jack/ui",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
@@ -100,11 +96,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Active\Simple_Black_Jack\ui" />
       <recent name="D:\Active\Simple_Black_Jack\test" />
       <recent name="D:\Active\Simple_Black_Jack\03" />
       <recent name="D:\Active\Simple_Black_Jack\03\utils" />
       <recent name="D:\Active\Simple_Black_Jack\03\config" />
-      <recent name="D:\Active\Simple_Black_Jack\03\controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Active\Simple_Black_Jack\tests" />
@@ -301,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716643948467</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Enum Settings, Minor Improvements">
+      <option name="closed" value="true" />
+      <created>1718029455239</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1718029455239</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -336,6 +340,7 @@
     <MESSAGE value="Variant 2 completed &#10;ABC, Dataclass, FactoryMethod etc." />
     <MESSAGE value="Not Sure about commit" />
     <MESSAGE value="Dependency Injection, Separated into modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dependency Injection, Separated into modules" />
+    <MESSAGE value="Enum Settings, Minor Improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enum Settings, Minor Improvements" />
   </component>
 </project>

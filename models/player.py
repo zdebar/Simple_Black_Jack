@@ -13,25 +13,24 @@ class Player(ABC):
     hand_value: int = 0
 
     def __str__(self) -> str:
-        return f"\n{self.name}'s hand".ljust(18) + " | " + " | ".join(str(card) for card in self.hand) + " | " + \
+        return f"\n{self.name}'s hand:".ljust(24) + " | " + " | ".join(str(card) for card in self.hand) + " | " + \
                f"\nValue: {self.hand_value}"
 
     @abstractmethod
     def want_card(self) -> bool:
-        pass
-
-    def print_card_drawn(self, card: Card):
-        print(f"\n{self.name} draws card: {card}")
+        raise NotImplementedError
 
 
 @dataclass
 class HumanPlayer(Player):
     def want_card(self) -> bool:
-        return input_yn("\nDo you want another card? (y/n): ")
+        return False
 
 
 @dataclass
 class ComputerPlayer(Player):
     def want_card(self) -> bool:
+        input(f"\nDealer will draw card if his hand value is below {GameSettings.DEALER_DRAW_NUMBER.value}. "
+              f"Press ENTER to continue!")
         return self.hand_value < GameSettings.DEALER_DRAW_NUMBER.value
 
