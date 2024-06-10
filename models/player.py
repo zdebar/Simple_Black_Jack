@@ -2,7 +2,6 @@ from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 from typing import List
 from models.card import Card
-from utils.input_utils import input_yn
 from config.config import GameSettings
 
 
@@ -30,7 +29,5 @@ class HumanPlayer(Player):
 @dataclass
 class ComputerPlayer(Player):
     def want_card(self) -> bool:
-        input(f"\nDealer will draw card if his hand value is below {GameSettings.DEALER_DRAW_NUMBER.value}. "
-              f"Press ENTER to continue!")
         return self.hand_value < GameSettings.DEALER_DRAW_NUMBER.value
 

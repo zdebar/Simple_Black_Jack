@@ -1,3 +1,5 @@
+import logging
+
 from models.card import Card
 from models.player import HumanPlayer, ComputerPlayer, Player
 from models.deck import Deck
@@ -5,6 +7,7 @@ from ui.ui_terminal import GameView
 from utils.hand_value_calculator import calculate_hand_value_with_default_dict
 from config.config import GameSettings, GameResult
 from typing import Type, Optional
+from enum import Enum
 
 
 class GameController:
@@ -17,9 +20,12 @@ class GameController:
 
     def run_game(self) -> None:
         self.deal_initial_cards()
-        self.draw_card_turn(self.player, self.view.ask_player_wants_card)
-        self.draw_card_turn(self.dealer)
-        self.determine_winner()
+        if self.game_on:
+            self.draw_card_turn(self.player, self.view.ask_player_wants_card)
+        if self.game_on:
+            self.draw_card_turn(self.dealer)
+        if self.game_on:
+            self.determine_winner()
 
     def deal_initial_cards(self) -> None:
         for _ in range(2):
@@ -29,19 +35,19 @@ class GameController:
         self.perform_draw_card_sequence(self.dealer, card)
 
     def draw_card_turn(self, member: Player, want_card_fn=None) -> None:
-        while self.game_on and (want_card_fn(member) if want_card_fn else member.want_card()):
+        logging.debug(f"{member} starts turn.")
+        while want_card_fn(member) if want_card_fn else member.want_card():
             card = self.draw_card()
             self.view.print_card_drawn(member, card)
             self.perform_draw_card_sequence(member, card)
 
     def determine_winner(self) -> None:
-        if self.game_on:
-            if self.player.hand_value > self.dealer.hand_value:
-                self.view.print_game_result(GameResult.PLAYER_WIN)
-            elif self.player.hand_value < self.dealer.hand_value:
-                self.view.print_game_result(GameResult.PLAYER_LOSS)
-            else:
-                self.view.print_game_result(GameResult.DRAW)
+        if self.player.hand_value > self.dealer.hand_value:
+            self.view.print_game_result(GameResult.PLAYER_WIN)
+        elif self.player.hand_value < self.dealer.hand_value:
+            self.view.print_game_result(GameResult.PLAYER_LOSS)
+        else:
+            self.view.print_game_result(GameResult.DRAW)
 
     def draw_card(self) -> Card:
         return self.deck.draw_card()

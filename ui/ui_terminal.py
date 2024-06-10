@@ -1,6 +1,7 @@
 from models.player import Player
 from models.card import Card
 from config.config import GameResult
+from utils.input_utils import input_yn
 
 
 class GameView:
@@ -15,8 +16,8 @@ class GameView:
 
     @staticmethod
     def print_card_drawn(member: Player, card: Card) -> None:
-        print(f"\n{member.name} draws card:".ljust(24) + f" | {card} |")
+        input(f"\n{member.name} draws card:".ljust(24) + f" | {card} |          Press ENTER to continue!")
 
     @staticmethod
     def ask_player_wants_card(player: Player) -> bool:
-        return 'y' == input(f"\n{player.name}, do you want another card? (y/n)? ").strip().lower()
+        return input_yn(f"\n{player.name}, do you want another card? (y/n)? ")
