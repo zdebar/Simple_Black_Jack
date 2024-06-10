@@ -1,14 +1,15 @@
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
+from typing import List
 from models.card import Card
 from utils.input_utils import input_yn
-from config.config import *
+from config.config import GameSettings
 
 
 @dataclass
 class Player(ABC):
     name: str
-    hand: list[Card] = field(default_factory=list)
+    hand: List[Card] = field(default_factory=list)
     hand_value: int = 0
 
     def __str__(self) -> str:
@@ -19,10 +20,8 @@ class Player(ABC):
     def want_card(self) -> bool:
         pass
 
-    @staticmethod
-    @abstractmethod
-    def print_card_drawn():
-        pass
+    def print_card_drawn(self, card: Card):
+        print(f"\n{self.name} draws card: {card}")
 
 
 @dataclass
@@ -30,14 +29,9 @@ class HumanPlayer(Player):
     def want_card(self) -> bool:
         return input_yn("\nDo you want another card? (y/n): ")
 
-    def print_card_drawn(self):
-        print("\nPlayer draws card!")
-
 
 @dataclass
 class ComputerPlayer(Player):
     def want_card(self) -> bool:
-        return self.hand_value < DEALER_DRAW_NUMBER
+        return self.hand_value < GameSettings.DEALER_DRAW_NUMBER.value
 
-    def print_card_drawn(self):
-        input("\nDealer draws card! Press ENTER to continue! ")

@@ -1,10 +1,10 @@
 # main.py
 from controllers.game_controller import GameControllerFactory
 from utils.input_utils import input_yn
-from config.logging_config import *
 import logging
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.CRITICAL, format='%(asctime)s - %(levelname)s - %(message)s')
     logging.debug("Starting Blackjack game.")
 
     while input_yn("\nDo you want to play game of BlackJack? (y/n): "):

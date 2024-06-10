@@ -2,7 +2,7 @@
 
 from typing import List, Dict
 from models.card import Card
-from config.config import *
+from config.config import DeckSettings, GameSettings
 import logging
 from functools import partial
 
@@ -12,11 +12,11 @@ def calculate_hand_value(hand: List[Card], value_dict: Dict[str, int]) -> int:
     num_aces = sum(1 for card in hand if card.rank == 'A')
 
     for _ in range(num_aces):
-        if total_value + ACE_ADDITION <= GAME_GOAL_NUMBER:
-            total_value += ACE_ADDITION
+        if total_value + DeckSettings.ACE_ADDITION.value <= GameSettings.GAME_GOAL_NUMBER.value:
+            total_value += DeckSettings.ACE_ADDITION.value
 
     logging.debug(f"{hand} calculated: {total_value}")
     return total_value
 
 
-calculate_hand_value_with_default_dict = partial(calculate_hand_value, value_dict=VALUE_DICT)
+calculate_hand_value_with_default_dict = partial(calculate_hand_value, value_dict=DeckSettings.VALUE_DICT.value)
